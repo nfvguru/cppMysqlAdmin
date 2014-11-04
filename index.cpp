@@ -52,3 +52,21 @@ void printDefault(cgiBase cb)
 {
 	cout << "Welcome !!" << endl;
 }
+
+void printSettings(cgiBase cb)
+{
+	cout << "Settings. !!" << endl;
+}
+void printDB(cgiBase cb)
+{
+	cout << "Manage DBs !!" << endl;
+}
+void printTables(cgiBase cb)
+{
+	cout << "Manage Tables !!" << endl;
+}
+
+void printQuery(cgiBase cb)
+{
+	cout << "Custom Query !!" << endl;
+}

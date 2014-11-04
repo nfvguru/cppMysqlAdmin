@@ -90,13 +90,17 @@ void cgiBase::printUrl (const string text, const string url)
 */
 bool cgiBase::isElement(const string element, const string value)
 {
-	form_iterator fi = formData.getElement(element);
-	if( !fi->isEmpty() && fi != (*formData).end()) {  
-		string curval= **fi;
-      		if ( curval.compare(value) == 0 ) {
-			return true;
-		}    
-   	}
+	try {
+		form_iterator fi = formData.getElement(element);
+		if( !fi->isEmpty() && fi != (*formData).end()) {  
+			string curval= **fi;
+			if ( curval.compare(value) == 0 ) {
+				return true;
+			}    
+		}
+	} catch (...) {
+		cout << "Exception in parsing the query string !!";
+	}
 	return false;
 }
 
@@ -110,6 +114,6 @@ int cgiBase::getOption()
         {
 		if (isElement("opt", links[y])) return y;
 	}
-	return 0;
+	return 100;
 }
 
