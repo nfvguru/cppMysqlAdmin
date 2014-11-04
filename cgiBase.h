@@ -17,6 +17,7 @@ class cgiBase
 private:
    Cgicc formData;
    void printTitle(const string title);
+   bool isElement(const string element, const string value);
 
 public:
 
@@ -27,7 +28,8 @@ public:
    void printHeader(const string title);
    void printHeader(const string title, const string hoptions);
    void printItem(const string tag, const string contents);
-
+   void printUrl (const string text, const string url);
+   int getOption();
 };
 
 #endif // GGIBASE_H

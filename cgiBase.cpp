@@ -75,3 +75,41 @@ void cgiBase::printItem(const string tag, const string contents)
 	cout << contents;
 	eTag(tag);
 }
+
+/*
+*/
+void cgiBase::printUrl (const string text, const string url)
+{
+	cout << "<a href=\"" << url << "\">" << endl;
+	cout << text;
+	eTag("a");
+
+}
+
+/*
+*/
+bool cgiBase::isElement(const string element, const string value)
+{
+	form_iterator fi = formData.getElement(element);
+	if( !fi->isEmpty() && fi != (*formData).end()) {  
+		string curval= **fi;
+      		if ( curval.compare(value) == 0 ) {
+			return true;
+		}    
+   	}
+	return false;
+}
+
+/*
+*/
+int cgiBase::getOption()
+{
+	string links[] = {"set", "mdb", "mtb", "cqs" };
+	int arrSize = sizeof(links)/sizeof(links[0]);
+        for ( int y =0; y < arrSize; y++)
+        {
+		if (isElement("opt", links[y])) return y;
+	}
+	return 0;
+}
+

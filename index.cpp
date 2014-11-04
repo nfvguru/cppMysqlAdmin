@@ -4,11 +4,21 @@
 using namespace std;
 void printLeft(cgiBase cb)
 {
-    	cb.sTag("table");
-	cb.printItem("tr", "<th>settings</th>");
-	cb.printItem("tr", "<th>Manage DBs</th>");
-	cb.printItem("tr", "<th>Manage Tables</th>");
-	cb.printItem("tr", "<th>Custom Query</th>");
+	string options[] = {"Settings", "Manage DBs", "Manage Tables", "Custom Query"};
+	string links[] = {"set", "mdb", "mtb", "cqs" };
+
+    	cb.sTag("table", "id=\"t03\"");
+	int arrSize = sizeof(options)/sizeof(options[0]);
+	for ( int y =0; y < arrSize; y++)
+	{
+		//
+		cb.sTag("tr");
+		cb.sTag("th");
+		string link= "./mysqlAdmin.cgi?opt=" + links [y];
+		cb.printUrl(options[y], link);
+		cb.eTag("tr");
+		cb.eTag("th");
+	} 
 	cb.eTag("table");
 }
 
@@ -26,12 +36,12 @@ void printFixed(cgiBase cb)
 
 void printBody(cgiBase cb, void (*callBack) (cgiBase cb)) 
 {
-    	cb.sTag("table");
+    	cb.sTag("table", "id=\"t02\"");
 	cb.sTag("tr");
-	cb.sTag("th", "width:\"30%\"");
+	cb.sTag("th", "width=\"20%\" valign=\"top\"");
 	printLeft(cb);
 	cb.eTag("th");
-	cb.sTag("th", "width:\"70%\"");
+	cb.sTag("th", "width=\"80%\"");
 	callBack(cb);
 	cb.eTag("th");
 	cb.eTag("tr");
