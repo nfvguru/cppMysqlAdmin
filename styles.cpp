@@ -25,9 +25,21 @@ void printStyles (cgiBase cb)
         background-color: #f2f2c2;\
         }";
 
+	const char * tableoptions4 = "table#t04 {\
+        width: 60%;\
+        background-color: #a2a2a2;\
+	border: 1px solid white;\
+        }\
+	table#t04 td,th {\
+	border: 1px solid blue;\
+	}\
+	";
+
 	cout << tableoptions1 << endl;
 	cout << tableoptions2 << endl;
 	cout << tableoptions3 << endl;
+	cout << tableoptions4 << endl;
+
 	cb.eTag("style");
 	cb.eTag("head");
 }
