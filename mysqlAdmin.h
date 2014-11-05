@@ -14,5 +14,6 @@ void printSettings(cgiBase cb);
 void printDB(cgiBase cb);
 void printTables(cgiBase cb);
 void printQuery(cgiBase cb);
+void doQuery(cgiBase cb);
 
 #endif //  MYSQLADMIN_H

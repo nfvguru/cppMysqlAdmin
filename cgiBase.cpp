@@ -108,7 +108,7 @@ bool cgiBase::isElement(const string element, const string value)
 */
 int cgiBase::getOption()
 {
-	string links[] = {"set", "mdb", "mtb", "cqs" };
+	string links[] = {"set", "mdb", "mtb", "cqs", "pq1" };
 	int arrSize = sizeof(links)/sizeof(links[0]);
         for ( int y =0; y < arrSize; y++)
         {

@@ -3,29 +3,18 @@
 #include "mysqlAdmin.h"
 
 using namespace std;
-// my functions
-
-/*
-void printFixed(cgiBase cb);
-void printStyles(cgiBase cb);
-void printBody(cgiBase cb, void (*callBack) (cgiBase cb));
-*/
 
 int main ()
 {
 	cgiBase cb; 
-	//void (*contentFunc) (cgiBase cb);
+	//callback function to print the right body
+	void (*callBack) (cgiBase cb);
 	
-	string Title = "Lava's MySql Admin Page";
-	cb.printHeader(Title, "style");
-	printStyles(cb);
-	cb.sTag("body");
-	printFixed(cb);
 	//check if any Query String Available
 	string qs= getenv("QUERY_STRING") ;
 	if ( qs.find("opt=") == std::string::npos )
 		//if opt is not available , print default
-		printBody(cb, printDefault);
+		callBack = printDefault;
 	else 
 	{
 		//swtich as per opt	
@@ -34,30 +23,47 @@ int main ()
 		{
 			case 0:
 				//settings
-				printBody(cb, printSettings);
+				callBack = printSettings;
 				break;
 
 			case 1:
 				//manage DB
-				printBody(cb, printDB);
+				callBack = printDB;
 				break;
 
 			case 2:
 				//manage Tables
-				printBody(cb, printTables);
+				callBack = printTables;
 				break;
 
 			case 3:
 				//Custom Query
-				printBody(cb, printQuery);
+				callBack = printQuery;
 				break;
+
+			case 4:
+				//manage Tables
+				callBack = doQuery;
+				break;
+
 			default:
 				//default page
-				printBody(cb, printDefault);
+				callBack = printDefault;
 				break;
 
 		}
 	}
+
+	/*
+	THE ACTUAL CODE TO PRINT THE GUI
+	*/
+	string Title = "Lava's MySql Admin Page";
+	cb.printHeader(Title, "style");
+	printStyles(cb);
+	cb.sTag("body");
+	printFixed(cb);
+	printBody(cb, callBack);
 	cb.eTag("body");
+	cb.eTag("html");
 	return 0;
 }
