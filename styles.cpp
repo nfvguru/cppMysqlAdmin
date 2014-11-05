@@ -1,8 +1,9 @@
 #include <iostream>
 #include "cgiBase.h"
+#include "mysqlAdmin.h"
 
 using namespace std;
-void printStyles (cgiBase cb)
+void mysqlAdmin::printStyles (cgiBase cb)
 {
 	//  Top Table
 	const char * tableoptions1 = "table#t01 {\
@@ -28,10 +29,10 @@ void printStyles (cgiBase cb)
 	const char * tableoptions4 = "table#t04 {\
         width: 60%;\
         background-color: #a2a2a2;\
-	border: 1px solid white;\
+	border: 1px solid black;\
         }\
 	table#t04 td,th {\
-	border: 1px solid blue;\
+	border: 1px solid white;\
 	}\
 	";
 

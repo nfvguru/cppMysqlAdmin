@@ -6,9 +6,10 @@
 #include <json/json.h>
 #include "cgiBase.h"
 #include "mysqlBase.h"
+#include "mysqlAdmin.h"
 
 using namespace std;
-void printTables(cgiBase cb)
+void mysqlAdmin::printTables(cgiBase cb)
 {
 	mysqlBase mb;
 	mb.connect();

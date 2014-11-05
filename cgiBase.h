@@ -30,6 +30,8 @@ public:
    void printItem(const string tag, const string contents);
    void printUrl (const string text, const string url);
    int getOption();
+   void saveSettings();
+   const char * getQueryString(const string qs);
 };
 
 #endif // GGIBASE_H

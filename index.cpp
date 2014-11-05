@@ -6,9 +6,10 @@
 #include <json/json.h>
 #include "cgiBase.h"
 #include "mysqlBase.h"
+#include "mysqlAdmin.h"
 
 using namespace std;
-void printLeft(cgiBase cb)
+void mysqlAdmin::printLeft(cgiBase cb)
 {
 	string options[] = {"Settings", "Manage DBs", "Manage Tables", "Custom Query"};
 	string links[] = {"set", "mdb", "mtb", "cqs" };
@@ -28,7 +29,7 @@ void printLeft(cgiBase cb)
 	cb.eTag("table");
 }
 
-void printFixed(cgiBase cb)
+void mysqlAdmin::printFixed(cgiBase cb)
 {
 	cb.sTag("table", "id=\"t01\"");
 	//cb.printItem("caption", "Mysql Admin");
@@ -40,7 +41,7 @@ void printFixed(cgiBase cb)
 	cb.eTag("table");
 }
 
-void printBody(cgiBase cb, void (*callBack) (cgiBase cb)) 
+void mysqlAdmin::printBody(cgiBase cb, void (mysqlAdmin::*callBack) (cgiBase cb)) 
 {
     	cb.sTag("table", "id=\"t02\"");
 	cb.sTag("tr");
@@ -48,13 +49,13 @@ void printBody(cgiBase cb, void (*callBack) (cgiBase cb))
 	printLeft(cb);
 	cb.eTag("th");
 	cb.sTag("th", "width=\"80%\"");
-	callBack(cb);
+	(this->*callBack)(cb);
 	cb.eTag("th");
 	cb.eTag("tr");
     	cb.eTag("table");
 }
 
-void printDefault(cgiBase cb)
+void mysqlAdmin::printDefault(cgiBase cb)
 {
 	cout << "Welcome !!" << endl;
 }

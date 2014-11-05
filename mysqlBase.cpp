@@ -59,6 +59,22 @@ void mysqlBase::printTables()
 */
 bool mysqlBase::executeQuery(const string query)
 {
+	con->setSchema("test");
+	res = stmt->executeQuery(query);
+	mData = res->getMetaData();
+	int numberOfColumns = mData->getColumnCount();
+	//cout << numberOfColumns ;
+	while (res->next()) {
+		cout << "<tr>";
+		for (int y=1; y <= numberOfColumns ; y++) {
+			//cout << y;
+			cout << "<td>" << res->getString(y) << "</td>" << endl;
+		}
+		cout << "</tr>";
+  	}	
+	delete res;
+  	delete stmt;
+  	delete con;
 	return false;
 }
 

@@ -32,6 +32,7 @@ private:
   	sql::Connection *con;
   	sql::Statement *stmt;
   	sql::ResultSet *res;
+	sql::ResultSetMetaData *mData;
 
 public:
 	mysqlBase();
